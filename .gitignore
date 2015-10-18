@@ -5,7 +5,7 @@
 *.mf
 *.nb-gradle
 .gradle/
-
+*.mp3
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
