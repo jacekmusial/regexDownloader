@@ -5,11 +5,6 @@
  */
 package musi.al;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author re
@@ -17,6 +12,6 @@ import java.util.logging.Logger;
 public class Main {
     public static void main (String[] args) {
         FileDownloader urlsDownloader = new FileDownloader(
-            "http://georgegordon.org/audio/radio/mp3/360g-32.mp3");
+            "http://georgegordon.org/audio/radio/mp3/360g-32.mp3", "360g-32.mp3");
     }
 }
