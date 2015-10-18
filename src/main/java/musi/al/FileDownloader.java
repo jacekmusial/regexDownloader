@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package musi.al;
 
 import java.io.BufferedInputStream;
@@ -12,8 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -53,6 +46,8 @@ public class FileDownloader implements Runnable{
     }
     
     /**
+     * Retrieve throwed errors
+     * 
      * @return the <var>errors</var>  or nothing, if empty
     */
     public String getErrors() {
@@ -68,7 +63,14 @@ public class FileDownloader implements Runnable{
         return this.response;
     }
     
+    /** 
+    * Constructor.  
+    * @param url URL to files
+    * @param filename
+    */
     public FileDownloader(String url, String filename) {
+        this.errors = new String();
+        
         try {
             out = new FileOutputStream(filename);
             this.url = new URL(url);
@@ -79,7 +81,8 @@ public class FileDownloader implements Runnable{
 
     @Override
     public void run() {
-        try (BufferedInputStream in = new BufferedInputStream(this.url.openStream())) {
+        try (BufferedInputStream in = new BufferedInputStream(
+                this.url.openStream())) {
             BufferedOutputStream bos = new BufferedOutputStream(out);
             
             byte[] data = new byte[1024];
@@ -90,14 +93,18 @@ public class FileDownloader implements Runnable{
             
             bos.close();
         }
-        catch (FileNotFoundException ex) { }
-        catch (IOException ex) {} 
+        catch (FileNotFoundException ex) { 
+            this.errors += ex.getMessage();
+            this.everythingOkay = false;
+        }
+        catch (IOException ex) {
+            this.errors += ex.getMessage();
+            this.everythingOkay = false;
+        } 
         finally {
             try {
                 out.close();
-            } catch (IOException ex) {
-                Logger.getLogger(FileDownloader.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (IOException ex) { }
         }
     }
 }

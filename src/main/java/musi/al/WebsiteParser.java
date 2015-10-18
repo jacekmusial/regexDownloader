@@ -1,10 +1,7 @@
 package musi.al;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import musi.al.HttpRequest.HttpRequestException;
 
 /**
  *
@@ -45,10 +42,16 @@ final class WebsiteParser implements Runnable {
     @Override
     public void run() {
         HttpRequest httpRequest = null;
-        String str = HttpRequest.get(url).body();
         
-        if (httpRequest.ok() && !httpRequest.isBodyEmpty()) {
-            this.source = str;
+        try {
+            String str = HttpRequest.get(url).body();
+
+            if (httpRequest.ok() && !httpRequest.isBodyEmpty()) {
+                this.source = str;
+            }
+        } catch (HttpRequestException ex) {
+            IOException cause = ex.getCause();
+            System.out.println(cause.getMessage());
         }
     }
 }
