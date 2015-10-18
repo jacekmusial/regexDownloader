@@ -11,7 +11,7 @@ package musi.al;
  */
 public class Main {
     public static void main (String[] args) {
-        WebsiteParser websiteParser = new WebsiteParser(
-                "http://georgegordon.org/audio/radio/bigpage.html", "");
+        UrlsDownloader websiteParser = new UrlsDownloader(
+                "http://georgegordon.org/audio/radio/mp3/360g-32.mp3", "");
     }
 }
