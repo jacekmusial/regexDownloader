@@ -1,48 +1,56 @@
 package musi.al;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import musi.al.HttpRequest.HttpRequestException;
+import static musi.al.NewClass.EXAMPLE_TEST;
 
 /**
  *
  * @author re
  */
 final class WebsiteParser implements Runnable {
-    private String url;
+    //TODO maybe add some final regex? Or detect 
+    /**
+     * Pattern to compile regex
+     */
+    private final Pattern pattern;
+    private final String url;
+    /**
+     * Source of website
+     */
     private String source;
-    private String searchWordOrRegex;
     private Boolean everythingOkay;
     
-    public WebsiteParser(String url, String searchWordOrRegex) {
+    /***
+     * HttpRequest object. See {@link musi.al.HttpRequest}
+     */
+    private HttpRequest httpRequest;
+
+    /**
+     * @return 
+     */
+    public int getResponse() {
+        return this.httpRequest.code();
+    }
+    
+    /**
+     * @return <var>source</var> code of website
+     */
+    public String getSource() {
+        return this.source;
+    }
+    
+    public WebsiteParser(String url, String pattern) {
         this.url = url;
-        this.searchWordOrRegex = searchWordOrRegex;
+        this.pattern = Pattern.compile(pattern);
         this.everythingOkay = true;
-        /*BufferedReader in = new BufferedReader(new InputStreamReader(
-        HttpRequest.get(url).buffer()));
-        
-        if (httpRequest.ok() || httpRequest.isBodyEmpty()) {
-        //this.isEverythingOkay = httpRequest.
-        }
-        
-        StringBuffer buffer = new StringBuffer();
-        String inputLine;
-        
-        try {
-        while ((inputLine = in.readLine()) != null) {
-        buffer.append(inputLine);
-        }
-        } catch (IOException ex) {
-        Logger.getLogger(WebsiteParser.class.getName()).log(Level.SEVERE, null, ex.toString());
-        this.whatIsTheProblem = ex.toString();
-        }
-        System.out.println(buffer.toString());
-        */
+        httpRequest = null;
     }
     
     @Override
     public void run() {
-        HttpRequest httpRequest = null;
-        
         try {
             String str = HttpRequest.get(url).body();
 
@@ -52,6 +60,14 @@ final class WebsiteParser implements Runnable {
         } catch (HttpRequestException ex) {
             IOException cause = ex.getCause();
             System.out.println(cause.getMessage());
+        }
+        
+        Matcher matcher = pattern.matcher(getSource());
+        
+        while (matcher.find()) {// check all occurance
+          System.out.print("Start index: " + matcher.start());
+          System.out.print(" End index: " + matcher.end() + " ");
+          System.out.println(matcher.group());
         }
     }
 }
