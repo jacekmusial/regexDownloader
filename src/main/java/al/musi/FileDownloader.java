@@ -1,4 +1,4 @@
-package musi.al;
+package al.musi;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

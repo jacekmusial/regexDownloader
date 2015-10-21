@@ -1,4 +1,4 @@
-package musi.al;
+package al.musi;
 /*
  * Copyright (c) 2014 Kevin Sawicki <kevinsawicki@gmail.com>
  *

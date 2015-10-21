@@ -1,10 +1,10 @@
-package musi.al;
+package al.musi;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import musi.al.HttpRequest.HttpRequestException;
-import static musi.al.NewClass.EXAMPLE_TEST;
+import al.musi.HttpRequest.HttpRequestException;
+import static al.musi.NewClass.EXAMPLE_TEST;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -37,7 +37,7 @@ final class WebsiteParser implements Runnable {
     private Boolean everythingOkay;
     
     /***
-     * HttpRequest object. See {@link musi.al.HttpRequest}
+     * HttpRequest object. See {@link al.musi.HttpRequest}
      */
     HttpRequest httpRequest;
 
