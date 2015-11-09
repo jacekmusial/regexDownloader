@@ -5,7 +5,7 @@
  */
 package musi.al;
 
-import al.musi.FileDownloader;
+import al.musi.Download;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,12 +39,12 @@ public class FileDownloaderTest {
     }
 
     /**
-     * Test of everythingOkay method, of class FileDownloader.
+     * Test of everythingOkay method, of class Download.
      */
     @Test
     public void testEverythingOkay() {
         System.out.println("everythingOkay");
-        FileDownloader instance = null;
+        Download instance = null;
         Boolean expResult = null;
         Boolean result = instance.everythingOkay();
         assertEquals(expResult, result);
@@ -53,12 +53,12 @@ public class FileDownloaderTest {
     }
 
     /**
-     * Test of getErrors method, of class FileDownloader.
+     * Test of getErrors method, of class Download.
      */
     @Test
     public void testGetErrors() {
         System.out.println("getErrors");
-        FileDownloader instance = null;
+        Download instance = null;
         String expResult = "";
         String result = instance.getErrors();
         assertEquals(expResult, result);
@@ -67,12 +67,12 @@ public class FileDownloaderTest {
     }
 
     /**
-     * Test of getResponse method, of class FileDownloader.
+     * Test of getResponse method, of class Download.
      */
     @Test
     public void testGetResponse() {
         System.out.println("getResponse");
-        FileDownloader instance = null;
+        Download instance = null;
         int expResult = 0;
         int result = instance.getResponse();
         assertEquals(expResult, result);
@@ -81,12 +81,12 @@ public class FileDownloaderTest {
     }
 
     /**
-     * Test of run method, of class FileDownloader.
+     * Test of run method, of class Download.
      */
     @Test
     public void testRun() {
         System.out.println("run");
-        FileDownloader instance = null;
+        Download instance = null;
         instance.run();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

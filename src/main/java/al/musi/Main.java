@@ -11,12 +11,15 @@ package al.musi;
  */
 public class Main {
     public static void main (String[] args) {
-        /*FileDownloader urlsDownloader = new FileDownloader(
-        "http://georgegordon.org/audio/radio/mp3/360g-32.mp3", "360g-32.mp3");*/
+        Download urlsDownloader = new Download(
+                "http://georgegordon.org/audio/radio/mp3/360g-32.mp3", 
+                "360g-32.mp3",
+                ".");
         
-        WebsiteParser websiteParser = new WebsiteParser(
-            "http://georgegordon.org/audio/radio/bigpage.html", null);
+        urlsDownloader.run();
+        /*WebsiteParser websiteParser = new WebsiteParser(
+        "http://georgegordon.org/audio/radio/bigpage.html", null);*/
         
-        websiteParser.run();
+        //websiteParser.run();
     }
 }

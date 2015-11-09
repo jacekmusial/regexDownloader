@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * @author re
  */
 public class NewClass {
-      public static final String EXAMPLE_TEST = "This is my small example string which I'm going to use for pattern matching.";
+    public static final String EXAMPLE_TEST = "This is my small example string which I'm going to use for pattern matching.";
 
     public static void main(String[] args) {
         Pattern pattern = Pattern.compile("\\w+");

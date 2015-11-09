@@ -1,11 +1,8 @@
 package al.musi;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import al.musi.HttpRequest.HttpRequestException;
-import static al.musi.NewClass.EXAMPLE_TEST;
-
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
@@ -56,7 +53,6 @@ final class WebsiteParser implements Runnable {
     }
     
     /**
-     * 
      * @param s Base String
      * @param width 
      * @return substring of <var>s</var>
@@ -76,17 +72,16 @@ final class WebsiteParser implements Runnable {
         Document doc = Parser.parse(getSource(), url);
         Elements links = doc.select("a[href]");
         
-        String ret = null;
+        StringBuilder ret = new StringBuilder();
         
         System.out.printf("\nLinks: (%d)", links.size());
         for( Element link : links) {
             System.out.printf(" * a: <%s>  (%s)",
                 link.attr("abs:href"), trim(link.text(), 35));
-            ret += link.attr("abs:href") + trim(link.text(), 35);
+            ret.append(link.attr("abs:href")).append(trim(link.text(), 35));
         }
-        return ret == null ? "There aren't any links" : ret;
+        return ret.length() > 0 ? ret.toString() : null;
     }
-    
     
     public WebsiteParser(String url, String pattern) {
         this.url = url;
